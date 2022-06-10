@@ -6,11 +6,6 @@
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
-    "splash": {
-      "image": "./assets/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
-    },
     "updates": {
       "fallbackToCacheTimeout": 0
     },
@@ -24,6 +19,15 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
+      },
+      "splash": {
+        "mdpi": "./assets/img/splash/splash-mdpi.png",
+        "hdpi": "./assets/img/splash/splash-hdpi.png",
+        "xhdpi": "./assets/img/splash/splash-xhdpi.png",
+        "xxhdpi": "./assets/img/splash/splash-xxhdpi.png",
+        "xxxhdpi": "./assets/img/splash/splash-xxxhdpi.png",
+        "resizeMode": "cover",
+        "backgroundColor": "#EB5353"
       }
     },
     "web": {

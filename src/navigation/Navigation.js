@@ -28,6 +28,7 @@ export default function Navigation() {
 }
 const styles = StyleSheet.create({
   container: {
+    flex:1,
     height,
     width,
     backgroundColor: '#F8F4F1'

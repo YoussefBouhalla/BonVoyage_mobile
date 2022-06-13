@@ -6,7 +6,6 @@ import FacebookIcon from '../assets/icons/facebookAuth.svg'
 import GoogleIcon from '../assets/icons/googleAuth.svg'
 import Logo from '../assets/icons/AuthLogo.svg';
 
-import AuthButton from '../features/UI/AuthButton';
 import LoginForm from '../features/UI/LoginForm';
 
 const {width, height} = Dimensions.get('window');

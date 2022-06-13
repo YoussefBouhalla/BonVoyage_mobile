@@ -2,22 +2,19 @@ import { StyleSheet, Text, NativeModules, View, Dimensions, Pressable } from 're
 import React from 'react'
 import { useFonts } from 'expo-font';
 
-import EmailIcon from '../assets/icons/email.svg'
-import KeyHoleIcon from '../assets/icons/keyhole.svg'
 import FacebookIcon from '../assets/icons/facebookAuth.svg'
 import GoogleIcon from '../assets/icons/googleAuth.svg'
+import Logo from '../assets/icons/AuthLogo.svg';
+
+import AuthButton from '../features/UI/AuthButton';
+import LoginForm from '../features/UI/LoginForm';
 
 const {width, height} = Dimensions.get('window');
 
 const {StatusBarManager} = NativeModules;
 const STATUSBAR_HEIGHT = Platform.OS === 'ios' ? 20 : StatusBarManager.HEIGHT;
 
-import Logo from '../assets/icons/AuthLogo.svg';
-import AuthInput from '../features/UI/AuthInput';
-import AuthButton from '../features/UI/AuthButton';
-
 export default function LoginScreen({navigation}) {
-
 
   // loading Poppins fonts
   const [loaded] = useFonts({
@@ -37,20 +34,11 @@ export default function LoginScreen({navigation}) {
         <Text style={{color: '#2E2E2E', fontFamily: 'Poppins-Medium', fontSize: 18 }}>We are happy to have you back !</Text>
       </View>
 
-      <View style={{width, display: 'flex' , flexDirection: 'column',marginTop: 30}}>
-        <AuthInput marginTop ={0} Icon={EmailIcon} placeholder="Email" error={{}} errorType="email" />
-        <AuthInput marginTop ={15} Icon={KeyHoleIcon} placeholder="Password" error={{}} errorType="password" />
-      </View>
-
-      <View style={{width}}>
-        <Text style={{marginVertical: 15, marginLeft: 15, color: "#EB5353", fontFamily: 'Poppins-Medium',textDecorationLine: 'underline', fontSize: 16}}>Forgot password?</Text>  
-      </View>
-
-      <AuthButton content="login"/>
+      <LoginForm navigation={navigation} />
       
       <View style={{width, justifyContent: "center", marginTop: 15, display: 'flex' , flexDirection: 'row'}}>
         <Text style={{color: "#2E2E2E", fontFamily: 'Poppins-Medium', fontSize: 16}}>You don't have an account ? </Text>
-        <Text style={{color: "#EB5353", fontFamily: 'Poppins-Medium',textDecorationLine: 'underline', fontSize: 16}}>Sign up</Text>
+        <Text style={{color: "#EB5353", fontFamily: 'Poppins-Medium',textDecorationLine: 'underline', fontSize: 16}} onPress={() => navigation.navigate('Signup')}>Sign up</Text>
       </View>
  
       <View style={{width: width - 30, height: 1 , backgroundColor: "#A3A3A3" , margin:15}}>

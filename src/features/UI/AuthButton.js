@@ -5,7 +5,9 @@ import { useFonts } from 'expo-font';
 const {width, height} = Dimensions.get('window');
 
 
-export default function AuthButton({content}) {
+export default function AuthButton({content, onPress}) {
+
+  
 
   // loading Poppins fonts
   const [loaded] = useFonts({
@@ -17,8 +19,8 @@ export default function AuthButton({content}) {
   }
 
   return (
-    <Pressable  style={styles.btn_login} >
-      <Text style={styles.btn_text} >{content}</Text>
+    <Pressable  style={styles.btn_login}  onPress={onPress} >
+      <Text style={styles.btn_text}>{content}</Text>
     </Pressable>
   )
 }

@@ -7,7 +7,7 @@ import ProfileIcon from '../../assets/icons/profile.svg'
 import DashboardIcon from '../../assets/icons/dashboard.svg'
 import BarsIcon from '../../assets/icons/bars.svg'
 
-export default function NavItem({index,currentSlideIndex, goToSlide, setCurrentSlideIndex, Icon}) {
+export default function NavItem({index,currentSlideIndex, goToSlide, setCurrentSlideIndex}) {
 
   const changeNavigation = (index) => {
     return () => {
@@ -18,11 +18,11 @@ export default function NavItem({index,currentSlideIndex, goToSlide, setCurrentS
 
   return (
     <Pressable onPress={changeNavigation(index)} style={{...styles.content ,flex: 1,borderColor: "#EB5353", borderBottomWidth: currentSlideIndex === index ? 4 : 0 , backgroundColor: currentSlideIndex === index ? '#a9a9a911' : 'transparent'}}>
-      {index === 0 && <HomeIcon height={30} />}
-      {index === 1 && <MapIcon height={30} width={30} />}
-      {index === 2 && <ProfileIcon height={30} width={30} />}
-      {index === 3 && <DashboardIcon height={30} width={30} />}
-      {index === 4 && <BarsIcon height={30} width={30} />}
+      {index === 0 && <HomeIcon height={23} />}
+      {index === 1 && <MapIcon height={23} width={23} />}
+      {index === 2 && <ProfileIcon height={23} width={23} />}
+      {index === 3 && <DashboardIcon height={23} width={23} />}
+      {index === 4 && <BarsIcon height={23} width={23} />}
     </Pressable>
   )
 }

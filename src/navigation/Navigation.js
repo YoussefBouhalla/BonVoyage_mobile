@@ -1,8 +1,13 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import { View, StyleSheet, Dimensions } from 'react-native'
 import * as Screens from '../screens';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import {useDispatch} from 'react-redux';
+
+import { getCities } from '../services/CitiesServices';
+import { setCitiesAction } from '../actions/CitiesActions';
+
 
 const {width, height} = Dimensions.get('window');
 
@@ -10,6 +15,15 @@ const {width, height} = Dimensions.get('window');
 const Stack = createNativeStackNavigator();
 
 export default function Navigation() {
+
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    getCities().then(res => {
+      dispatch(setCitiesAction(res.data))
+    })
+  }, [])
+  
   return (
     <View style={styles.container}>
         <NavigationContainer>

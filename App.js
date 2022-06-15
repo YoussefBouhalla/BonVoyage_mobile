@@ -2,17 +2,26 @@ import { StyleSheet, Dimensions } from 'react-native';
 import Navigation from "./src/navigation/Navigation";
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+import allReducers from './src/reducers';
 
 const {width, height} = Dimensions.get('window');
 
+const store = createStore(allReducers);
+
 export default function App() {
+
+  
   return (
-    <SafeAreaProvider>
-      <SafeAreaView style={styles.container}>
-        <StatusBar style="light" backgroundColor='#EB5353' translucent={false} />
-        <Navigation/>
-      </SafeAreaView>
-    </SafeAreaProvider>
+    <Provider store={store}>
+      <SafeAreaProvider>
+          <SafeAreaView style={styles.container}>
+            <StatusBar style="light" backgroundColor='#EB5353' translucent={false} />
+            <Navigation/>
+          </SafeAreaView>
+      </SafeAreaProvider>
+    </Provider>
   );
 }
 

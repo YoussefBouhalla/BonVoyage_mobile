@@ -1,12 +1,24 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View, ScrollView,Dimensions } from 'react-native'
 import React from 'react'
+import Card from './Card';
+
+const {width, height} = Dimensions.get('window');
 
 export default function ScrollContainer() {
   return (
-    <View>
-      <Text>ScrollContainer</Text>
-    </View>
+    <ScrollView style={{...styles.scroll}} contentContainerStyle={{paddingBottom: 10}}>
+      <Card />
+      <Card />
+      <Card />
+      <Card />
+    </ScrollView>
   )
 }
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  scroll :{
+    flexGrow: 0,
+    height: height - 520,
+    paddingBottom: 10,
+  }
+})

@@ -52,12 +52,12 @@ export default function Card({index, length, tour}) {
       <View style={{...styles.rating}}>
         {
           Array.from(Array(parseInt(tour.rating)) , (e, index) => (
-            <StarFilledIcon height={15} width={15} />
+            <StarFilledIcon height={15} width={15} key={index} />
           ))
         }
         {
           Array.from(Array(5 - parseInt(tour.rating)) , (e, index) => (
-            <StarUnfilledYellowIcon height={15} width={15} />
+            <StarUnfilledYellowIcon height={15} width={15} key={index} />
           ))
         }
         

@@ -6,7 +6,7 @@ const {width, height} = Dimensions.get('window');
 
 export default function Container() {
   return (
-    <View style={{flex: 1, width, marginTop: 10}}>
+    <View style={{flex: 1, width}}>
       <ScrollContainer />
     </View>
   )

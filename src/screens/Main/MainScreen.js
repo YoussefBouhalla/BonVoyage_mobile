@@ -83,6 +83,7 @@ export default function MainScreen() {
         pagingEnabled
         data={slides}
         horizontal
+        nestedScrollEnabled
         showsHorizontalScrollIndicator={false}
         renderItem={({item}) => ( <item.component /> )}
       />

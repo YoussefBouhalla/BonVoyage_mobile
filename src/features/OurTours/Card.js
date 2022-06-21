@@ -34,7 +34,7 @@ export default function Card({index, length, tour}) {
   return (
     <Pressable style={{...styles.card, marginTop: index === 0 ? 0 : 10, marginBot: index === length ? 10 : 0}}>
       <LinearGradient colors={['#00000024', '#000000ac']} style={styles.cover_gradient}></LinearGradient>
-      <ImageBackground source={{uri: `https://scontent.fcmn1-2.fna.fbcdn.net/v/t1.6435-9/49119891_575649722897523_6474445259194499072_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=e3f864&_nc_ohc=KJZfGTDNWhoAX_Tbln9&_nc_ht=scontent.fcmn1-2.fna&oh=00_AT_Iy0iVLc_V7EOxFHjSSQ3euMlOvzxTIUSkUEOBK0tG0Q&oe=62CE2643` }} style={styles.card_image} />
+      <ImageBackground source={{uri: `http://192.168.137.1:3000/tours/${tour.tourId}/image` }} style={styles.card_image} />
 
       <View style={{position: 'absolute', top: 5, left: 5}}>
         <StarUnfilledIcon height={30} width={30} />

@@ -19,7 +19,6 @@ export default function ToursSlide() {
   // --------------------
   // Tours related
   // --------------------
-
   const ourToursSearch = useSelector(state => state.OurToursSearch)
   const [tours, setTours] = useState([])
 

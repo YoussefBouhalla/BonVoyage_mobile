@@ -16,14 +16,18 @@ export default function App() {
 
   const [fontLoaded, setFontLoaded] = useState(false);
 
-  useEffect(async () => {
+  const loadFont = async () => {
     await Font.loadAsync({
       'Poppins-Bold': require('./src/assets/fonts/Poppins-Bold.ttf'),
       'Poppins-Regular': require('./src/assets/fonts/Poppins-Regular.ttf'),
       'Poppins-Medium': require('./src/assets/fonts/Poppins-Medium.ttf'),
       'Poppins-SemiBold': require('./src/assets/fonts/Poppins-SemiBold.ttf'),
     });
-    setFontLoaded(true);
+    await setFontLoaded(true);
+  }
+
+  useEffect(() => {
+    loadFont()
   }, []);
   
   return (

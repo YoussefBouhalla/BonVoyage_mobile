@@ -30,7 +30,7 @@ const slides = [
   }
 ]
 
-export default function MainScreen() {
+export default function MainScreen({navigation}) {
 
   // --------------------
   // Slides State and Ref
@@ -87,7 +87,7 @@ export default function MainScreen() {
         horizontal
         nestedScrollEnabled
         showsHorizontalScrollIndicator={false}
-        renderItem={({item}) => ( <item.component goToSlide={goToSlide} setCurrentSlideIndex={setCurrentSlideIndex}/> )}
+        renderItem={({item}) => ( <item.component navigation={navigation} goToSlide={goToSlide} setCurrentSlideIndex={setCurrentSlideIndex}/> )}
       />
     </View>
   )

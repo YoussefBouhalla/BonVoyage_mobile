@@ -36,12 +36,8 @@ export default function Navigation() {
     <View style={styles.container}>
         <NavigationContainer>
             <Stack.Navigator initialRouteName='Login'>
-              { !token && 
-                  <>
-                    <Stack.Screen name="Login" component={Screens.LoginScreen} options={{headerShown: false}} /> 
-                    <Stack.Screen name="Signup" component={Screens.SignUpScreen} options={{headerShown: false}} />
-                  </>
-              }
+                <Stack.Screen name="Login" component={Screens.LoginScreen} options={{headerShown: false}} /> 
+                <Stack.Screen name="Signup" component={Screens.SignUpScreen} options={{headerShown: false}} />
                 <Stack.Screen name="Main" component={Screens.MainScreen} options={{headerShown: false}} />
                 <Stack.Screen name="Premium" component={Screens.PremiumScreen} options={{headerShown: false}} />
                 <Stack.Screen name="StayDetails" component={Screens.StayDetailsScreen} options={{headerShown: false}} />

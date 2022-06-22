@@ -2,6 +2,8 @@ import { StyleSheet, Text, View, Dimensions} from 'react-native'
 import React, {useState} from 'react'
 import ProfileCard from '../../../features/UI/ProfileCard';
 import List from '../../../features/MenuList/List';
+import * as SecureStore from 'expo-secure-store'
+
 
 import HomeIcon from '../../../assets/icons/home.svg'
 import StaysIcon from '../../../assets/icons/stays.svg'
@@ -14,7 +16,7 @@ import LogoutIcon from '../../../assets/icons/logout.svg'
 
 const {width, height} = Dimensions.get('window');
 
-export default function MenuSlide({goToSlide, setCurrentSlideIndex}) {
+export default function MenuSlide({navigation, goToSlide, setCurrentSlideIndex}) {
 
   // ----------------
   // Change Navigation
@@ -57,8 +59,9 @@ export default function MenuSlide({goToSlide, setCurrentSlideIndex}) {
 
   }
 
-  const handleLogoutPress = () => {
-
+  const handleLogoutPress = async () => {
+    await SecureStore.deleteItemAsync("token")
+    await navigation.navigate("Login")
   }
 
   const [menus, setMenus] = useState(

@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View, Dimensions,ImageBackground } from 'react-native'
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import {LinearGradient} from 'expo-linear-gradient';
 import { useFonts } from 'expo-font';
 
@@ -9,9 +9,19 @@ import LocationIcon from '../../assets/icons/location.svg'
 import StarFilledIcon from '../../assets/icons/starFilled.svg'
 import StarUnfilledYellowIcon from '../../assets/icons/starUnfilledYellow.svg'
 
+import { getCity } from '../../services/CitiesServices';
+
 const {width, height} = Dimensions.get('window');
 
-export default function Card({marginTop}) {
+export default function Card({tour, index}) {
+
+  const [city, setCity] = useState("")
+
+  useEffect(() => {
+    getCity(tour.cityId).then(res => {
+      setCity(res.data.cityname)
+    })
+  }, [])
 
   // loading Poppins fonts
   const [loaded] = useFonts({
@@ -23,9 +33,9 @@ export default function Card({marginTop}) {
   }
 
   return (
-    <View style={{...styles.card, marginTop}}>
+    <View style={{...styles.card, marginTop: index === 0 || index === 1 ? 0 : 10 }}>
       <LinearGradient colors={['#00000024', '#000000ac']} style={styles.cover_gradient}></LinearGradient>
-      <ImageBackground source={{uri: `https://scontent.fcmn1-2.fna.fbcdn.net/v/t1.6435-9/49119891_575649722897523_6474445259194499072_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=e3f864&_nc_ohc=KJZfGTDNWhoAX_Tbln9&_nc_ht=scontent.fcmn1-2.fna&oh=00_AT_Iy0iVLc_V7EOxFHjSSQ3euMlOvzxTIUSkUEOBK0tG0Q&oe=62CE2643` }} style={styles.card_image} />
+      <ImageBackground source={{uri: `http://192.168.137.1:3000/tours/${tour.tourId}/image` }} style={styles.card_image} />
 
       <View style={{position: 'absolute', top: 5, left: 5}}>
         <StarUnfilledIcon height={30} width={30} />
@@ -33,26 +43,26 @@ export default function Card({marginTop}) {
 
       <View style={{marginTop: 'auto'}}>
 
-        <Text style={{...styles.title}}>Akchour waterfalls</Text>
+        <Text style={{...styles.title}}>{tour.title}</Text>
 
         <View style={{...styles.location}}>
           <LocationIcon height={12} width={12}/>
-          <Text style={{...styles.city}}>Chefchaouen</Text>
+          <Text style={{...styles.city}}>{city}</Text>
         </View>
 
         <View style={{...styles.rating}}>
           {
-            Array.from(Array(parseInt(4)) , (e, index) => (
+            Array.from(Array(parseInt(tour.rating)) , (e, index) => (
               <StarFilledIcon height={15} width={15} key={index} />
             ))
           }
           {
-            Array.from(Array(5 - parseInt(4)) , (e, index) => (
+            Array.from(Array(5 - parseInt(tour.rating)) , (e, index) => (
               <StarUnfilledYellowIcon height={15} width={15} key={index} />
             ))
           }
           
-          <Text style={{...styles.rate}}>{4}.0</Text>
+          <Text style={{...styles.rate}}>{tour.rating}.0</Text>
         </View>
 
       </View>

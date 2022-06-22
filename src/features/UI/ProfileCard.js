@@ -7,7 +7,7 @@ import CrownIcon from '../../assets/icons/crown.svg'
 import RightArrowIcon from '../../assets/icons/rightArrow.svg'
 
 
-export default function ProfileCard() {
+export default function ProfileCard({onPress}) {
 
   // loading Poppins fonts
   const [loaded] = useFonts({
@@ -20,7 +20,7 @@ export default function ProfileCard() {
   }
 
   return (
-    <Pressable style={{...styles.card}}>
+    <Pressable style={{...styles.card}} onPress={onPress}>
       <LinearGradient colors={['#00000080', '#00000080']} style={styles.cover_gradient}></LinearGradient>
       <ImageBackground source={{uri: `https://scontent.fcmn1-2.fna.fbcdn.net/v/t1.6435-9/49119891_575649722897523_6474445259194499072_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=e3f864&_nc_ohc=KJZfGTDNWhoAX_Tbln9&_nc_ht=scontent.fcmn1-2.fna&oh=00_AT_Iy0iVLc_V7EOxFHjSSQ3euMlOvzxTIUSkUEOBK0tG0Q&oe=62CE2643` }} style={styles.card_image} />
 

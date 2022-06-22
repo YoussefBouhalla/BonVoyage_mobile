@@ -14,33 +14,31 @@ import LogoutIcon from '../../../assets/icons/logout.svg'
 
 const {width, height} = Dimensions.get('window');
 
-export default function MenuSlide() {
+export default function MenuSlide({goToSlide, setCurrentSlideIndex}) {
 
+  // ----------------
+  // Change Navigation
+  // ----------------
+  const changeNavigation = (index) => {
+    return () => {
+        goToSlide(index);
+        setCurrentSlideIndex(index)
+    }
+  }
+  
   // ----------------
   // Pages
   // ----------------
-  const handleHomePress = () => {
-
-  }
-
   const handleStaysPress = () => {
-
-  }
-
-  const handleToursPress = () => {
-
-  }
-
-  const handlePremiumPress = () => {
 
   }
 
   const [pages, setPages] = useState(
     [
-      {title: 'Home' , Icon: HomeIcon, onPress: handleHomePress},
+      {title: 'Home' , Icon: HomeIcon, onPress: changeNavigation(0)},
       {title: 'Stays' , Icon: StaysIcon, onPress: handleStaysPress},
-      {title: 'Tours' , Icon: MapIcon, onPress: handleToursPress},
-      {title: 'Premium Dashboard' , Icon: DashboardIcon, onPress: handlePremiumPress}
+      {title: 'Tours' , Icon: MapIcon, onPress: changeNavigation(1)},
+      {title: 'Premium Dashboard' , Icon: DashboardIcon, onPress: changeNavigation(3)}
     ]
   )
 
@@ -73,14 +71,12 @@ export default function MenuSlide() {
   )
 
   
-
   
-
   return (
     <View style={{flex: 1, width}}>
-        <ProfileCard />
+        <ProfileCard onPress={changeNavigation(2)} />
         <Text style={{marginHorizontal: 15, marginVertical: 10,fontFamily: 'Poppins-Bold', fontSize: 18 }}>Pages</Text> 
-        <List list={pages} />
+        <List list={pages} changeNavigation={changeNavigation}  />
         <Text style={{marginHorizontal: 15, marginVertical: 10,fontFamily: 'Poppins-Bold', fontSize: 18 }}>Menu</Text> 
         <List list={menus} />
     </View>

@@ -9,8 +9,8 @@ const {width, height} = Dimensions.get('window');
 export default function Navbar({slides, currentSlideIndex, goToSlide, setCurrentSlideIndex}) {
   return (
     <View style={styles.navbar}>
-      {slides.map((_,index) => (
-        <NavItem key={index} index={index} currentSlideIndex={currentSlideIndex} goToSlide={goToSlide} setCurrentSlideIndex={setCurrentSlideIndex} />
+      {slides.map((slide,index) => (
+        <NavItem key={index} index={slide.id} currentSlideIndex={currentSlideIndex} goToSlide={goToSlide} setCurrentSlideIndex={setCurrentSlideIndex} />
       ))}
     </View>
   )

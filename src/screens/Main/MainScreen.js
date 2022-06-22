@@ -8,23 +8,23 @@ const {width, height} = Dimensions.get('window');
 
 const slides = [
   {
-      id: 1,
+      id: 0,
       component: Slides.HomeSlide
   },
   {
-      id:2,
+      id:1,
       component: Slides.ToursSlide
   },
   {
-      id:3,
+      id:2,
       component: Slides.ProfileSlide
   },
   {
-      id:4,
+      id:3,
       component: Slides.DashboardSlide
   },
   {
-      id:5,
+      id:4,
       component: Slides.MenuSlide
   }
 ]
@@ -85,7 +85,7 @@ export default function MainScreen() {
         horizontal
         nestedScrollEnabled
         showsHorizontalScrollIndicator={false}
-        renderItem={({item}) => ( <item.component /> )}
+        renderItem={({item}) => ( <item.component goToSlide={goToSlide} setCurrentSlideIndex={setCurrentSlideIndex}/> )}
       />
     </View>
   )

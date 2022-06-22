@@ -2,7 +2,6 @@ import { StyleSheet, TextInput,  View, Dimensions, Text } from 'react-native'
 import React , {useState} from 'react'
 import { Formik } from 'formik';
 import * as SecureStore from 'expo-secure-store'
-import { useFonts } from 'expo-font';
 
 import EmailIcon from '../../assets/icons/email.svg'
 import KeyHoleIcon from '../../assets/icons/keyhole.svg'
@@ -41,14 +40,7 @@ export default function LoginForm({ navigation }) {
         }
     }
 
-    // loading Poppins fonts
-    const [loaded] = useFonts({
-        'Poppins-Medium': require('../../assets/fonts/Poppins-Medium.ttf'),
-    });
 
-    if (!loaded) {
-        return null;
-    }
 
     return (
         <Formik

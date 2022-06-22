@@ -1,6 +1,5 @@
 import { StyleSheet, Text, View, Dimensions, Pressable} from 'react-native'
 import React, {useRef, useState, useEffect, useCallback} from 'react'
-import { useFonts } from 'expo-font';
 import BottomSheet,{ BottomSheetView } from '@gorhom/bottom-sheet';
 import {useSelector} from 'react-redux'
 
@@ -47,16 +46,6 @@ export default function ToursSlide() {
     setIsBottomSheetOpen(false);
   }, [])
 
-  // --------------------
-  // loading Poppins fonts
-  // --------------------
-  const [loaded] = useFonts({
-    'Poppins-Bold': require('../../../assets/fonts/Poppins-Bold.ttf'),
-  });
-
-  if (!loaded) {
-      return null;
-  }
 
   return (
     <>

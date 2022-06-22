@@ -1,7 +1,6 @@
 import { StyleSheet, Text, View, Dimensions,ImageBackground } from 'react-native'
 import React from 'react'
 import {LinearGradient} from 'expo-linear-gradient';
-import { useFonts } from 'expo-font';
 
 
 import StarUnfilledIcon from '../../assets/icons/starUnfilled.svg'
@@ -13,14 +12,7 @@ const {width, height} = Dimensions.get('window');
 
 export default function Card({marginTop}) {
 
-  // loading Poppins fonts
-  const [loaded] = useFonts({
-    'Poppins-SemiBold': require('../../assets/fonts/Poppins-SemiBold.ttf'),
-  });
 
-  if (!loaded) {
-      return null;
-  }
 
   return (
     <View style={{...styles.card, marginTop}}>

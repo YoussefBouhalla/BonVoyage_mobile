@@ -1,6 +1,5 @@
 import { StyleSheet, Text, NativeModules, View, Dimensions, Pressable } from 'react-native'
-import React from 'react'
-import { useFonts } from 'expo-font';
+import React  from 'react'
 
 import FacebookIcon from '../assets/icons/facebookAuth.svg'
 import GoogleIcon from '../assets/icons/googleAuth.svg'
@@ -13,17 +12,7 @@ const {width, height} = Dimensions.get('window');
 const {StatusBarManager} = NativeModules;
 const STATUSBAR_HEIGHT = Platform.OS === 'ios' ? 20 : StatusBarManager.HEIGHT;
 
-export default function LoginScreen({navigation}) {
-
-  // loading Poppins fonts
-  const [loaded] = useFonts({
-    'Poppins-Bold': require('../assets/fonts/Poppins-Bold.ttf'),
-    'Poppins-Medium': require('../assets/fonts/Poppins-Medium.ttf'),
-  });
-
-  if (!loaded) {
-      return null;
-  }
+export default function LoginScreen({navigation}) {  
 
   return (
     <View style={styles.container}>

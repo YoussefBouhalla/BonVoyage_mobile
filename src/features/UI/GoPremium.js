@@ -1,7 +1,6 @@
 import { StyleSheet, Text, View, Pressable, Dimensions } from 'react-native'
 import React from 'react'
 import {LinearGradient} from 'expo-linear-gradient';
-import { useFonts } from 'expo-font';
 
 
 import CrownIcon from '../../assets/icons/crown.svg'
@@ -11,15 +10,6 @@ const {width, height} = Dimensions.get('window');
 
 export default function GoPremium() {
 
-  // loading Poppins fonts
-  const [loaded] = useFonts({
-    'Poppins-SemiBold': require('../../assets/fonts/Poppins-SemiBold.ttf'),
-    'Poppins-Medium': require('../../assets/fonts/Poppins-Medium.ttf'),
-  });
-
-  if (!loaded) {
-      return null;
-  }
 
   return (
     <View style={{...styles.card}}>

@@ -1,6 +1,5 @@
 import { StyleSheet,  View, Dimensions, Pressable} from 'react-native'
 import React , {useRef, useState, useCallback} from 'react'
-import { useFonts } from 'expo-font';
 import BottomSheet,{ BottomSheetView } from '@gorhom/bottom-sheet';
 import {useSelector} from 'react-redux'
 
@@ -40,17 +39,6 @@ export default function ProfileSlide() {
     setIsBottomSheetOpen(false);
   }, [])
 
-  // --------------------
-  // loading Poppins fonts
-  // --------------------
-  const [loaded] = useFonts({
-    'Poppins-SemiBold': require('../../../assets/fonts/Poppins-SemiBold.ttf'),
-    'Poppins-Medium': require('../../../assets/fonts/Poppins-Medium.ttf'),
-  });
-
-  if (!loaded) {
-      return null;
-  }
 
   return (
     <>

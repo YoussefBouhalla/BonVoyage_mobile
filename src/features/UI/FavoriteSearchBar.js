@@ -1,6 +1,5 @@
 import { StyleSheet, Text, View, Pressable } from 'react-native'
 import React from 'react'
-import { useFonts } from 'expo-font';
 import {useDispatch} from 'react-redux';
 
 import SearchColoredIcon from '../../assets/icons/searchColored.svg';
@@ -15,16 +14,6 @@ export default function FavoriteSearchBar({ handleBottomSheet }) {
 
   const clearSearch = () => {
     dispatch(OurToursSearchAction({}))
-  }
-
-  // loading Poppins fonts
-  const [loaded] = useFonts({
-    'Poppins-Medium': require('../../assets/fonts/Poppins-Medium.ttf'),
-    'Poppins-SemiBold': require('../../assets/fonts/Poppins-SemiBold.ttf'),
-  });
-
-  if (!loaded) {
-    return null;
   }
 
   return (

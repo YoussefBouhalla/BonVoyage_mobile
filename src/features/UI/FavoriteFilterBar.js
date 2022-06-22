@@ -1,6 +1,5 @@
 import { StyleSheet, Text, View, Dimensions, Pressable } from 'react-native'
 import React from 'react'
-import { useFonts } from 'expo-font';
 import { useSelector, useDispatch } from 'react-redux'
 
 import FilterIcon from '../../assets/icons/filter.svg'
@@ -19,16 +18,6 @@ export default function FavoriteFilterBar() {
     return () => {
       dispatch(OurToursSearchAction({...ourToursSearch, type}))
     }
-  }
-
-  // loading Poppins fonts
-  const [loaded] = useFonts({
-    'Poppins-Medium': require('../../assets/fonts/Poppins-Medium.ttf'),
-    'Poppins-SemiBold': require('../../assets/fonts/Poppins-SemiBold.ttf'),
-  });
-
-  if (!loaded) {
-      return null;
   }
 
   return (

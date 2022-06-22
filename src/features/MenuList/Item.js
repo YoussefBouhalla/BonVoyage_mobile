@@ -1,20 +1,9 @@
 import { StyleSheet, Text, View, Pressable } from 'react-native'
 import React from 'react'
-import { useFonts } from 'expo-font';
-
 
 export default function Item({ Icon, title, onPress, index}) {
 
 
-  // loading Poppins fonts
-  const [loaded] = useFonts({
-    'Poppins-Bold': require('../../assets/fonts/Poppins-Bold.ttf'),
-    'Poppins-Medium': require('../../assets/fonts/Poppins-Medium.ttf'),
-  });
-
-  if (!loaded) {
-      return null;
-  }
 
   return (
     <Pressable style={{...styles.item, marginTop: index === 0 ? 0 : 10, backgroundColor: title === "Sign Out" ? "#EB5353" : "#FFF" }} onPress={onPress}>

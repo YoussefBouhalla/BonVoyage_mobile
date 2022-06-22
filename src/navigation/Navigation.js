@@ -1,6 +1,8 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useState} from 'react'
 import { View, StyleSheet, Dimensions } from 'react-native'
 import * as Screens from '../screens';
+import * as SecureStore from 'expo-secure-store'
+
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import {useDispatch} from 'react-redux';
@@ -18,18 +20,28 @@ export default function Navigation() {
 
   const dispatch = useDispatch()
 
+  const [token, setToken] = useState(false)
+
   useEffect(() => {
-    getCities().then(res => {
-      dispatch(setCitiesAction(res.data))
-    })
+    SecureStore.getItemAsync("token").then((token) => {
+      setToken(token)
+      getCities().then(res => {
+        dispatch(setCitiesAction(res.data))
+        
+      })
+    });
   }, [])
   
   return (
     <View style={styles.container}>
         <NavigationContainer>
             <Stack.Navigator initialRouteName='Login'>
-                <Stack.Screen name="Login" component={Screens.LoginScreen} options={{headerShown: false}} /> 
-                <Stack.Screen name="Signup" component={Screens.SignUpScreen} options={{headerShown: false}} />
+              { !token && 
+                  <>
+                    <Stack.Screen name="Login" component={Screens.LoginScreen} options={{headerShown: false}} /> 
+                    <Stack.Screen name="Signup" component={Screens.SignUpScreen} options={{headerShown: false}} />
+                  </>
+              }
                 <Stack.Screen name="Main" component={Screens.MainScreen} options={{headerShown: false}} />
                 <Stack.Screen name="Premium" component={Screens.PremiumScreen} options={{headerShown: false}} />
                 <Stack.Screen name="StayDetails" component={Screens.StayDetailsScreen} options={{headerShown: false}} />

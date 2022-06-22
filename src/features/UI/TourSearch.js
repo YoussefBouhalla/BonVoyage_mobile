@@ -1,6 +1,5 @@
 import { StyleSheet, Text, View, Dimensions,TextInput} from 'react-native'
 import React, {useState} from 'react'
-import { useFonts } from 'expo-font';
 import {Picker} from '@react-native-picker/picker';
 import {useSelector, useDispatch} from 'react-redux';
 
@@ -30,18 +29,6 @@ export default function TourSearch({ handleBottomSheetClose }) {
         await handleBottomSheetClose(0)
     }
 
-    // --------------------
-    // loading Poppins fonts
-    // --------------------
-    const [loaded] = useFonts({
-        'Poppins-Bold': require('../../assets/fonts/Poppins-Bold.ttf'),
-        'Poppins-Regular': require('../../assets/fonts/Poppins-Regular.ttf'),
-        'Poppins-Medium': require('../../assets/fonts/Poppins-Medium.ttf'),
-    });
-
-    if (!loaded) {
-        return null;
-    }
 
     return (
         <View>

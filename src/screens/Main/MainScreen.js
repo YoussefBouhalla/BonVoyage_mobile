@@ -2,6 +2,7 @@ import { StyleSheet, View, Dimensions, FlatList, BackHandler, Alert } from 'reac
 import React, {useEffect, useState, useRef} from 'react'
 import * as Slides from './Slides'
 
+
 import Navbar from '../../features/Navbar/Navbar'
 
 const {width, height} = Dimensions.get('window');
@@ -73,6 +74,7 @@ export default function MainScreen() {
       ref?.current?.scrollToOffset({offset: offset * width})
   }
   // --------------------
+
 
   return (
     <View style={styles.container}>

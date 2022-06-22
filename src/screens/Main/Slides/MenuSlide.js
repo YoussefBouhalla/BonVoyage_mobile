@@ -70,8 +70,7 @@ export default function MenuSlide({goToSlide, setCurrentSlideIndex}) {
     ]
   )
 
-  
-  
+
   return (
     <View style={{flex: 1, width}}>
         <ProfileCard onPress={changeNavigation(2)} />

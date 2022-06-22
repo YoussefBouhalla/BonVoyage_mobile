@@ -1,22 +1,11 @@
 import { StyleSheet, Text, View, Pressable, ImageBackground } from 'react-native'
 import {LinearGradient} from 'expo-linear-gradient';
 import React from 'react'
-import { useFonts } from 'expo-font';
 
 import CrownIcon from '../../assets/icons/crown.svg'
 import ScrollContainer from '../DashboardCards/Container';
 
 export default function DashboardHeader() {
-
-    // loading Poppins fonts
-    const [loaded] = useFonts({
-        'Poppins-SemiBold': require('../../assets/fonts/Poppins-SemiBold.ttf'),
-        'Poppins-Medium': require('../../assets/fonts/Poppins-Medium.ttf'),
-    });
-
-    if (!loaded) {
-        return null;
-    }
 
     return (
         <View style={{...styles.card}}>

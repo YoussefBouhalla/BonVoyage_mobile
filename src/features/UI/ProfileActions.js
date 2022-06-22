@@ -1,21 +1,11 @@
 import { StyleSheet, Text, View, Pressable } from 'react-native'
 import React from 'react'
-import { useFonts } from 'expo-font';
 
 
 import EditWhiteIcon from '../../assets/icons/editWhite.svg';
 import MapIcon from '../../assets/icons/map.svg';
 
 export default function ProfileActions() {
-
-  // loading Poppins fonts
-  const [loaded] = useFonts({
-    'Poppins-Bold': require('../../assets/fonts/Poppins-Bold.ttf'),
-  });
-
-  if (!loaded) {
-    return null;
-  }
 
   return (
     <View style={{...styles.actions}}>

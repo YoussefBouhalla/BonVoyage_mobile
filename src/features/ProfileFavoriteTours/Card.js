@@ -1,7 +1,6 @@
 import { StyleSheet, Text, View, Pressable, ImageBackground } from 'react-native'
 import React, {useEffect, useState} from 'react'
 import {LinearGradient} from 'expo-linear-gradient';
-import { useFonts } from 'expo-font';
 
 import StarUnfilledIcon from '../../assets/icons/starUnfilled.svg'
 import LocationIcon from '../../assets/icons/location.svg'
@@ -20,16 +19,7 @@ export default function Card({index, length, tour}) {
       setCity(res.data.cityname)
     })
   }, [])
-  
 
-  // loading Poppins fonts
-  const [loaded] = useFonts({
-    'Poppins-SemiBold': require('../../assets/fonts/Poppins-SemiBold.ttf'),
-  });
-
-  if (!loaded) {
-      return null;
-  }
 
   return (
     <Pressable style={{...styles.card, marginTop: index === 0 ? 0 : 10, marginBot: index === length ? 10 : 0}}>

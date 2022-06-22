@@ -1,18 +1,8 @@
 import { StyleSheet, Text, View,Pressable } from 'react-native'
 import React from 'react'
-import { useFonts } from 'expo-font';
-
 
 export default function Item({setCurrentIndex, currentIndex, index, title }) {
 
-  // loading Poppins fonts
-  const [loaded] = useFonts({
-    'Poppins-SemiBold': require('../../assets/fonts/Poppins-SemiBold.ttf'),
-  });
-
-  if (!loaded) {
-    return null;
-  }
 
   return (
     <Pressable onPress={() => setCurrentIndex(index)} style={{...styles.content ,flex: 1,borderColor: "#EB5353", borderBottomWidth: currentIndex === index ? 4 : 0 , backgroundColor: currentIndex === index ? '#a9a9a911' : 'transparent'}}>

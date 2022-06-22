@@ -1,22 +1,11 @@
 import { StyleSheet, Text, Pressable, Dimensions } from 'react-native'
 import React from 'react'
-import { useFonts } from 'expo-font';
 
 const {width, height} = Dimensions.get('window');
 
 
 export default function AuthButton({content, onPress}) {
 
-  
-
-  // loading Poppins fonts
-  const [loaded] = useFonts({
-    'Poppins-SemiBold': require('../../assets/fonts/Poppins-SemiBold.ttf')
-  });
-
-  if (!loaded) {
-      return null;
-  }
 
   return (
     <Pressable  style={styles.btn_login}  onPress={onPress} >

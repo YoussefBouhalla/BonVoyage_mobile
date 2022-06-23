@@ -9,6 +9,7 @@ import FilterBar from '../../../features/UI/OurToursFilterBar';
 import Tours from '../../../features/OurTours/ScrollContainer';
 import TourSearch from '../../../features/UI/TourSearch';
 import { searchForTours } from '../../../services/ToursServices';
+import NoResult from '../../../features/UI/NoResult';
 
 
 const {width, height} = Dimensions.get('window');
@@ -57,7 +58,12 @@ export default function ToursSlide() {
 
         <FilterBar />
 
-        <Tours tours={tours} />
+        {
+          tours.length === 0 ?
+            <NoResult/> 
+          : <Tours tours={tours} />
+        }
+
 
       </View>
 

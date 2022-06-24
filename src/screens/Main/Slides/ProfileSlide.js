@@ -1,7 +1,6 @@
-import { StyleSheet,  View, Dimensions, Pressable} from 'react-native'
-import React , {useRef, useState, useCallback} from 'react'
-import BottomSheet,{ BottomSheetView } from '@gorhom/bottom-sheet';
-import {useSelector} from 'react-redux'
+import { StyleSheet,  View, Dimensions } from 'react-native'
+import React , { useState } from 'react'
+
 
 import ProfileActions from '../../../features/UI/ProfileActions';
 import Navbar from '../../../features/ProfileNavigation/Navbar';
@@ -9,7 +8,6 @@ import Navbar from '../../../features/ProfileNavigation/Navbar';
 import ProfileFavorite from '../../../features/ProfileFavoriteTours/Container'
 import ProfileStays from '../../../features/ProfileDashboardStays/Container'
 import ProfileReservations from '../../../features/ProfileReservations/Container'
-import TourSearch from '../../../features/UI/TourSearch';
 import ProfileHeader from '../../../features/UI/ProfileHeader';
 
 
@@ -20,67 +18,26 @@ export default function ProfileSlide() {
   const [currentIndex, setCurrentIndex] = useState(0)
 
 
-  // --------------------
-  // Bottom Sheet State and Ref
-  // --------------------
-  const [isBottomSheetOpen, setIsBottomSheetOpen] = useState(false);
-  const sheetRef = useRef(null);
-
-  // --------------------
-  // Bottom Sheet methods
-  // --------------------
-  const handleBottomSheet = useCallback((index) => {
-    sheetRef.current?.snapToIndex(index);
-    setIsBottomSheetOpen(true);
-  }, [])
-
-  const handleBottomSheetClose = useCallback((index) => {
-    sheetRef.current?.snapToIndex(index);
-    setIsBottomSheetOpen(false);
-  }, [])
-
-
   return (
-    <>
-      <View style={{flex: 1, width}}>
+    <View style={{flex: 1, width}}>
 
-        <ProfileHeader />
+      <ProfileHeader />
 
-        <ProfileActions />
+      <ProfileActions />
 
-        <Navbar setCurrentIndex={setCurrentIndex} currentIndex={currentIndex} />
+      <Navbar setCurrentIndex={setCurrentIndex} currentIndex={currentIndex} />
 
-        {
-          currentIndex === 0 && <ProfileFavorite handleBottomSheet={handleBottomSheet} />
-        }
-        {
-          currentIndex === 1 && <ProfileReservations />
-        }
-        {
-          currentIndex === 2 && <ProfileStays />
-        }
-
-      </View>
-
-      {/* Search Bottom Sheet */}
-
-      { isBottomSheetOpen &&
-        <Pressable style={styles.sheet_background} onPress={() => handleBottomSheetClose(0)}>
-        
-        </Pressable>
+      {
+        currentIndex === 0 && <ProfileFavorite />
+      }
+      {
+        currentIndex === 1 && <ProfileReservations />
+      }
+      {
+        currentIndex === 2 && <ProfileStays />
       }
 
-      <BottomSheet
-        ref={sheetRef}
-        snapPoints={[ 1 , 300  ]}
-        enablePanDownToClose
-        onClose={() => setIsBottomSheetOpen(false) }
-      >
-        <BottomSheetView>
-            <TourSearch handleBottomSheetClose={handleBottomSheetClose} />
-        </BottomSheetView>
-      </BottomSheet>
-    </>
+    </View>
   )
 }
 

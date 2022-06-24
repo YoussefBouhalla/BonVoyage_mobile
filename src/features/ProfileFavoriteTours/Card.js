@@ -2,7 +2,6 @@ import { StyleSheet, Text, View, Pressable, ImageBackground } from 'react-native
 import React, {useEffect, useState} from 'react'
 import {LinearGradient} from 'expo-linear-gradient';
 
-import StarUnfilledIcon from '../../assets/icons/starUnfilled.svg'
 import LocationIcon from '../../assets/icons/location.svg'
 import StarFilledIcon from '../../assets/icons/starFilled.svg'
 import StarUnfilledYellowIcon from '../../assets/icons/starUnfilledYellow.svg'
@@ -15,7 +14,7 @@ export default function Card({index, length, tour}) {
   const [city, setCity] = useState("")
 
   useEffect(() => {
-    getCity(7).then(res => {
+    getCity(tour.cityId).then(res => {
       setCity(res.data.cityname)
     })
   }, [])
@@ -24,15 +23,11 @@ export default function Card({index, length, tour}) {
   return (
     <Pressable style={{...styles.card, marginTop: index === 0 ? 0 : 10, marginBot: index === length ? 10 : 0}}>
       <LinearGradient colors={['#00000024', '#000000ac']} style={styles.cover_gradient}></LinearGradient>
-      <ImageBackground source={{uri: `https://scontent.fcmn1-2.fna.fbcdn.net/v/t1.6435-9/49119891_575649722897523_6474445259194499072_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=e3f864&_nc_ohc=KJZfGTDNWhoAX_Tbln9&_nc_ht=scontent.fcmn1-2.fna&oh=00_AT_Iy0iVLc_V7EOxFHjSSQ3euMlOvzxTIUSkUEOBK0tG0Q&oe=62CE2643` }} style={styles.card_image} />
+      <ImageBackground source={{uri: `http://192.168.137.1:3000/tours/${tour.tourId}/image` }} style={styles.card_image} />
 
-      <View style={{position: 'absolute', top: 5, left: 5}}>
-        <StarUnfilledIcon height={30} width={30} />
-      </View>
+      <Text style={{...styles.title}}>{tour.title}</Text>
 
-      <Text style={{...styles.title}}>Akchour waterfalls</Text>
-
-      <Text style={{...styles.description}}>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,</Text>
+      <Text style={{...styles.description}}>{tour.description}</Text>
 
       <View style={{...styles.location}}>
         <LocationIcon height={15} width={15}/>
@@ -41,17 +36,17 @@ export default function Card({index, length, tour}) {
 
       <View style={{...styles.rating}}>
         {
-          Array.from(Array(parseInt(4)) , (e, index) => (
+          Array.from(Array(parseInt(tour.rating)) , (e, index) => (
             <StarFilledIcon height={15} width={15} key={index} />
           ))
         }
         {
-          Array.from(Array(5 - parseInt(4)) , (e, index) => (
+          Array.from(Array(5 - parseInt(tour.rating)) , (e, index) => (
             <StarUnfilledYellowIcon height={15} width={15} key={index} />
           ))
         }
         
-        <Text style={{...styles.rate}}>{4}.0</Text>
+        <Text style={{...styles.rate}}>{tour.rating}.0</Text>
       </View>
 
     </Pressable>

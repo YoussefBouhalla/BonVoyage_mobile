@@ -1,6 +1,8 @@
 import { StyleSheet, View, Dimensions, FlatList, BackHandler, Alert } from 'react-native'
 import React, {useEffect, useState, useRef} from 'react'
 import * as Slides from './Slides'
+import * as SecureStore from 'expo-secure-store'
+import jwt from 'jwt-decode'
 
 
 import Navbar from '../../features/Navbar/Navbar'
@@ -29,6 +31,12 @@ const slides = [
       component: Slides.MenuSlide
   }
 ]
+
+SecureStore.getItemAsync("token").then((token) => {
+  if (jwt(token).role !== 'premium') {
+    slides.splice(3, 1)
+  }
+});
 
 export default function MainScreen({navigation}) {
 

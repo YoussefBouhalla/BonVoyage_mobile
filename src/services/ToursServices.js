@@ -6,6 +6,10 @@ export function searchForTours(data) {
     return axios.post(`${AppURL}/search`, data);
 }
 
+export function getFavoriteTours(userId) {
+    return axios.get(`${AppURL}/favorite/${userId}`);
+}
+
 export function getRecommendedTours() {
     return axios.get(`${AppURL}/recommended`);
 }

@@ -1,23 +1,33 @@
 import { StyleSheet, Text, View, Pressable, ImageBackground } from 'react-native'
 import {LinearGradient} from 'expo-linear-gradient';
-import React from 'react'
+import * as SecureStore from 'expo-secure-store'
+import jwt from 'jwt-decode'
+import React, {useEffect, useState} from 'react';
 
 import CrownIcon from '../../assets/icons/crown.svg'
 import ScrollContainer from '../DashboardCards/Container';
 
 export default function DashboardHeader() {
 
+    const [user, setUser] = useState({})
+
+    useEffect(() => {
+        SecureStore.getItemAsync("token").then((token) => {
+        setUser(jwt(token));
+        });
+    }, [])
+
     return (
         <View style={{...styles.card}}>
             <LinearGradient colors={['#00000080', '#00000080']} style={styles.cover_gradient}></LinearGradient>
-            <ImageBackground source={{uri: `https://scontent.fcmn1-2.fna.fbcdn.net/v/t1.6435-9/49119891_575649722897523_6474445259194499072_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=e3f864&_nc_ohc=KJZfGTDNWhoAX_Tbln9&_nc_ht=scontent.fcmn1-2.fna&oh=00_AT_Iy0iVLc_V7EOxFHjSSQ3euMlOvzxTIUSkUEOBK0tG0Q&oe=62CE2643` }} style={styles.card_image} />
+            <ImageBackground source={{uri: `http://192.168.137.1:3000/users/${user.id}/profile/cover` }} style={styles.card_image} />
 
             <Text style={{marginHorizontal: 15,marginTop: 15, marginBottom: 5,fontFamily: 'Poppins-Bold', fontSize: 18, color: "#FFF" }}>Dashboard</Text>
 
             <View style={{display: 'flex', flexDirection: 'row', marginHorizontal: 15 }}>
                 <View style={{position: 'relative'}}>
                     <View style={{...styles.icon}}>
-                        <ImageBackground source={{uri: `https://scontent.fcmn1-1.fna.fbcdn.net/v/t1.6435-9/189291492_1192288864566936_3467608870586354046_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=ZU99pusxuXcAX9q64a0&tn=3SSixveo5-B0na2e&_nc_ht=scontent.fcmn1-1.fna&oh=00_AT_GvsSlHS_ZAvLi41ingNPB98hWg0vc8ALx4WzCyASxAg&oe=62CDCA7A` }} style={styles.card_image} />
+                        <ImageBackground source={{uri: `http://192.168.137.1:3000/users/${user.id}/profile/image` }} style={styles.card_image} />
                     </View>
 
                     <View style={{...styles.online}}>
@@ -26,10 +36,13 @@ export default function DashboardHeader() {
                 </View>
 
                 <View style={{display: 'flex', flexDirection: 'column',marginLeft: 10, justifyContent: 'center' }}>
-                    <Text style={{...styles.username}}>Youssef Bouhalla</Text>
+                    <Text style={{...styles.username}}>{user.firstname} {user.lastname}</Text>
                     <View style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
-                        <CrownIcon height={11} width={11} />
-                        <Text style={{...styles.role}}>Premium owner</Text>
+                        {
+                            user.role === 'premium' &&
+                            <CrownIcon height={11} width={11} />
+                        }
+                        <Text style={{...styles.role, marginLeft: user.role === "premium" ? 5 : 0}}>{user.role} user</Text>
                     </View>
                 </View>
             </View>
@@ -98,8 +111,7 @@ const styles = StyleSheet.create({
     role :{
         color: "#FFF",
         fontSize: 12,
-        fontFamily: "Poppins-Medium",
-        marginLeft: 5
+        fontFamily: "Poppins-Medium"
     },
     online: {
         position: 'absolute',
